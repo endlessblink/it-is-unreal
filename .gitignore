@@ -1,0 +1,34 @@
+# Unreal Engine
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

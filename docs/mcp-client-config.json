@@ -1,0 +1,57 @@
+{
+  "_comment": "Example MCP client configuration for is-it-unreal. Copy the relevant section to your MCP client's config file. Replace /path/to/is-it-unreal with the actual path where you cloned this repository.",
+
+  "claude-code": {
+    "_location": "Merge mcpServers into .claude/settings.json (project-local) or ~/.claude/settings.json (global)",
+    "mcpServers": {
+      "unrealMCP": {
+        "command": "uv",
+        "args": ["--directory", "/path/to/is-it-unreal/server", "run", "is_it_unreal.py"]
+      }
+    }
+  },
+
+  "claude-desktop": {
+    "_location": "Merge mcpServers into claude_desktop_config.json. Location varies by OS: macOS: ~/Library/Application Support/Claude/claude_desktop_config.json, Windows: %APPDATA%/Claude/claude_desktop_config.json",
+    "mcpServers": {
+      "unrealMCP": {
+        "command": "uv",
+        "args": ["--directory", "/path/to/is-it-unreal/server", "run", "is_it_unreal.py"]
+      }
+    }
+  },
+
+  "pip-install": {
+    "_location": "Alternative: install the server as a Python package, then reference the installed entry point directly",
+    "_setup": "cd /path/to/is-it-unreal/server && pip install -e .",
+    "mcpServers": {
+      "unrealMCP": {
+        "command": "is-it-unreal"
+      }
+    }
+  },
+
+  "cursor": {
+    "_location": "Add to .cursor/mcp.json in your project root, or ~/.cursor/mcp.json globally",
+    "mcpServers": {
+      "unrealMCP": {
+        "command": "uv",
+        "args": ["--directory", "/path/to/is-it-unreal/server", "run", "is_it_unreal.py"]
+      }
+    }
+  },
+
+  "custom-host": {
+    "_location": "If your Unreal Editor is on a different machine, override the host and port via environment variables",
+    "mcpServers": {
+      "unrealMCP": {
+        "command": "uv",
+        "args": ["--directory", "/path/to/is-it-unreal/server", "run", "is_it_unreal.py"],
+        "env": {
+          "UNREAL_HOST": "192.168.1.100",
+          "UNREAL_PORT": "55557"
+        }
+      }
+    }
+  }
+}
