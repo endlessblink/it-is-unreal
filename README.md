@@ -23,63 +23,134 @@ An optional companion plugin (`GameplayHelpers`) provides runtime Blueprint help
 
 ## Quick Start
 
-### 1. Install the Plugin
+### Prerequisites
 
-Copy the `plugin/UnrealMCP/` folder into your Unreal project's `Plugins/` directory:
+- **Unreal Engine** 5.4+ (tested with 5.7)
+- **Python** 3.10+
+- **uv** — install from [docs.astral.sh/uv/getting-started/installation](https://docs.astral.sh/uv/getting-started/installation/)
+
+### Step 1: Clone
+
+```bash
+git clone https://github.com/endlessblink/it-is-unreal.git
+```
+
+### Step 2: Install the UE5 Plugin
+
+Copy the plugin folders into your Unreal project's `Plugins/` directory:
+
+```bash
+# macOS / Linux
+cp -r /absolute/path/to/it-is-unreal/plugin/UnrealMCP /absolute/path/to/YourProject/Plugins/
+
+# Windows (PowerShell)
+Copy-Item -Recurse C:\path\to\it-is-unreal\plugin\UnrealMCP C:\path\to\YourProject\Plugins\
+```
+
+Your project structure should look like:
 
 ```
 YourProject/
   Plugins/
-    UnrealMCP/          <- copy this
-    GameplayHelpers/    <- optional, for runtime helpers
+    UnrealMCP/          <- required
+    GameplayHelpers/    <- optional, copy only if you want runtime Blueprint helpers
 ```
 
-Rebuild your project. The plugin is editor-only and loads automatically.
+Open the project in Unreal Editor. If prompted to rebuild, click **Yes**. The plugin is editor-only and loads automatically on startup.
 
-### 2. Run the MCP Server
+### Step 3: Configure Your AI Client
 
-```bash
-cd server/
-uv run it_is_unreal.py
-```
+Add the MCP server config to your client. Replace `/absolute/path/to/it-is-unreal` with the actual absolute path where you cloned the repository — do not use a relative path or a placeholder.
 
-Or install as a package:
+Your MCP client launches the server automatically over stdio; you do not run it manually.
 
-```bash
-cd server/
-pip install -e .
-it-is-unreal
-```
+<details>
+<summary>Claude Code</summary>
 
-### 3. Configure Your MCP Client
-
-**Claude Code** (`.claude/settings.json`):
+Merge into `.claude/settings.json` (project-local) or `~/.claude/settings.json` (global):
 
 ```json
 {
   "mcpServers": {
     "unrealMCP": {
       "command": "uv",
-      "args": ["--directory", "/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
+      "args": ["--directory", "/absolute/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
     }
   }
 }
 ```
 
-**Claude Desktop** (`claude_desktop_config.json`):
+</details>
+
+<details>
+<summary>Claude Desktop</summary>
+
+Merge into `claude_desktop_config.json`:
+
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
 {
   "mcpServers": {
     "unrealMCP": {
       "command": "uv",
-      "args": ["--directory", "/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
+      "args": ["--directory", "/absolute/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
     }
   }
 }
 ```
 
-See [`docs/mcp-client-config.json`](docs/mcp-client-config.json) for additional client configurations.
+</details>
+
+<details>
+<summary>Cursor</summary>
+
+Add to `.cursor/mcp.json` in your project root, or `~/.cursor/mcp.json` globally:
+
+```json
+{
+  "mcpServers": {
+    "unrealMCP": {
+      "command": "uv",
+      "args": ["--directory", "/absolute/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>pip install alternative (any client)</summary>
+
+If you prefer a system-installed entry point:
+
+```bash
+cd /absolute/path/to/it-is-unreal/server && pip install -e .
+```
+
+Then use this config in any client:
+
+```json
+{
+  "mcpServers": {
+    "unrealMCP": {
+      "command": "it-is-unreal"
+    }
+  }
+}
+```
+
+</details>
+
+### Step 4: Verify
+
+Open your Unreal project in the editor, then ask your AI assistant:
+
+> *List all actors in the current level*
+
+If you get actor names back, the connection is working.
 
 ## Tools (123)
 
@@ -303,12 +374,6 @@ See [`docs/mcp-client-config.json`](docs/mcp-client-config.json) for additional 
 | Windows (Win64) | Supported |
 | macOS (Mac) | Supported |
 | Linux | Supported |
-
-## Requirements
-
-- **Unreal Engine** 5.4+ (tested with 5.7)
-- **Python** 3.10+
-- **uv** (recommended) or pip
 
 ## GameplayHelpers Plugin (Optional)
 
