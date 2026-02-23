@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/it-is-unreal-cover.png" alt="it-is-unreal" width="100%">
+</p>
+
 # it-is-unreal
 
 **123-tool MCP server for controlling Unreal Engine from AI assistants.**

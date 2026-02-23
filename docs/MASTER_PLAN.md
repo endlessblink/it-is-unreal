@@ -35,7 +35,7 @@
 - Regenerated uv.lock
 
 ### ~~TASK-001~~: Extract and publish open-source project
-- Scaffolded project at `/media/endlessblink/data/my-projects/ai-development/game-dev/it-is-unreal/`
+- Scaffolded standalone project repository
 - Copied 66 UnrealMCP C++ source files, applied 3 edits (BUILD_ID, MI path, DocsURL)
 - Copied Python server (6431 lines) + 21 helper files, renamed imports
 - Stripped GameplayHelpers (3642 -> 1215 lines), removed B&D-specific code
