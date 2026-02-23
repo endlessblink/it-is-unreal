@@ -1,8 +1,8 @@
 """
-Unreal Engine Advanced MCP Server
+it-is-unreal — MCP Server for Unreal Engine
 
-A streamlined MCP server focused on advanced composition tools for Unreal Engine.
-Contains only the advanced tools from the expanded MCP tool system to keep tool count manageable.
+123-tool MCP server for controlling Unreal Engine from AI assistants.
+Bridges MCP protocol (stdio) to Unreal Engine (TCP:55557).
 """
 
 import logging
