@@ -2,6 +2,13 @@
   <img src="docs/it-is-unreal-cover.png" alt="it-is-unreal" width="100%">
 </p>
 
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/Unreal_Engine-5.4%2B-black?logo=unrealengine" alt="Unreal Engine 5.4+">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/MCP_Tools-123-green" alt="123 MCP Tools">
+</p>
+
 # it-is-unreal
 
 **123-tool MCP server for controlling Unreal Engine from AI assistants.**
@@ -174,7 +181,7 @@ If you get actor names back, the connection is working.
 | `get_actor_material_info` | Get material info for an actor |
 | `snap_actor_to_ground` | Snap actor down to terrain surface |
 
-### Materials (8)
+### Materials (9)
 
 | Tool | Description |
 |------|-------------|
@@ -186,6 +193,7 @@ If you get actor names back, the connection is working.
 | `set_mesh_asset_material` | Set default material on a mesh asset |
 | `apply_material_to_blueprint` | Apply material to a Blueprint's mesh component |
 | `set_mesh_material_color` | Quick color change on a mesh |
+| `get_available_materials` | List all materials in the project |
 
 ### Material Graph (9)
 
@@ -343,12 +351,11 @@ If you get actor names back, the connection is working.
 | `take_screenshot` | Capture a screenshot of the editor viewport |
 | `get_editor_log` | Read recent editor log messages |
 
-### Skeletal Mesh & Animation Extras (2)
+### Skeletal Mesh Extras (1)
 
 | Tool | Description |
 |------|-------------|
 | `set_skeletal_animation` | Set the animation on a skeletal mesh component |
-| `get_available_materials` | List all materials in the project |
 
 ### Procedural Generation (12)
 
@@ -406,6 +413,20 @@ Heavy operations (texture import, mesh import, procedural generation) use longer
 
 The server connects fresh for each tool call and disconnects after receiving the response. There is no persistent session state between calls.
 
+## Troubleshooting
+
+**Plugin not loading:**
+Check the Output Log in Unreal Editor (Window > Developer Tools > Output Log) and filter for `LogMCP`. You should see `UnrealMCP server listening on port 55557` on startup. If not, verify the plugin is in `YourProject/Plugins/UnrealMCP/` and rebuild.
+
+**Connection refused:**
+The Unreal Editor must be running with the plugin loaded before your AI assistant can connect. The Python server connects to `127.0.0.1:55557` by default — override with `UNREAL_HOST` and `UNREAL_PORT` environment variables if needed.
+
+**Tool call timeouts:**
+Heavy operations (texture import, mesh import, procedural generation) can take up to 300 seconds. If you hit timeouts on normal operations, check that no dialog boxes are blocking the editor (e.g., "Rebuild?" prompts).
+
+**Server logs:**
+The Python server writes detailed logs to `server/it_is_unreal.log`. Check this file for connection errors, malformed responses, and tool execution details.
+
 ## Contributing
 
 Contributions welcome. Please:
@@ -418,9 +439,18 @@ Contributions welcome. Please:
 
 When adding new tools, follow the existing pattern: define the C++ handler in the plugin, register it in the appropriate handler class, and add the corresponding `@mcp.tool()` function in `it_is_unreal.py`.
 
+## Updating
+
+```bash
+cd it-is-unreal && git pull
+```
+
+Then re-copy `plugin/UnrealMCP/` to your Unreal project's `Plugins/` directory and restart the editor. The Python server picks up changes automatically on next launch (your MCP client restarts it per tool call).
+
 ## Safety Rules
 
 See [CLAUDE.md](CLAUDE.md) for 41 hard-won safety rules for working with Unreal Engine via MCP. These prevent crashes, data loss, and silent failures discovered through extensive real-world development.
+CLAUDE.md is automatically read by AI coding assistants (Claude Code, Cursor, etc.) so these rules are enforced whenever an AI works on your Unreal project.
 
 Key rules at a glance:
 
@@ -435,4 +465,4 @@ Key rules at a glance:
 
 ---
 
-Built with frustration, determination, and mass amounts of 3AM coffee during the development of [Blood & Dust](https://github.com/flopperam).
+Built with frustration, determination, and mass amounts of 3AM coffee during the development of Blood & Dust.

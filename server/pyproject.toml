@@ -1,8 +1,8 @@
 [project]
 name = "it-is-unreal"
 version = "1.0.0"
-description = "101-tool MCP server for controlling Unreal Engine from AI assistants"
-readme = {text = "124-tool MCP server for controlling Unreal Engine from AI assistants. See https://github.com/flopperam/it-is-unreal for full documentation.", content-type = "text/plain"}
+description = "123-tool MCP server for controlling Unreal Engine from AI assistants"
+readme = {text = "123-tool MCP server for controlling Unreal Engine from AI assistants. See https://github.com/endlessblink/it-is-unreal for full documentation.", content-type = "text/plain"}
 requires-python = ">=3.10,<3.14"
 dependencies = [
   "mcp[cli]>=1.4.1",

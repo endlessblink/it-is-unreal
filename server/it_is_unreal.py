@@ -69,8 +69,8 @@ logging.basicConfig(
 logger = logging.getLogger("ItIsUnreal")
 
 # Configuration
-UNREAL_HOST = "127.0.0.1"
-UNREAL_PORT = 55557
+UNREAL_HOST = os.environ.get("UNREAL_HOST", "127.0.0.1")
+UNREAL_PORT = int(os.environ.get("UNREAL_PORT", "55557"))
 
 class UnrealConnection:
     """

@@ -1,12 +1,12 @@
 {
-  "_comment": "Example MCP client configuration for it-is-unreal. Copy the relevant section to your MCP client's config file. Replace /path/to/it-is-unreal with the actual path where you cloned this repository.",
+  "_comment": "Example MCP client configuration for it-is-unreal. Copy the relevant section to your MCP client's config file. Replace /absolute/path/to/it-is-unreal with the actual path where you cloned this repository.",
 
   "claude-code": {
     "_location": "Merge mcpServers into .claude/settings.json (project-local) or ~/.claude/settings.json (global)",
     "mcpServers": {
       "unrealMCP": {
         "command": "uv",
-        "args": ["--directory", "/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
+        "args": ["--directory", "/absolute/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
       }
     }
   },
@@ -16,14 +16,14 @@
     "mcpServers": {
       "unrealMCP": {
         "command": "uv",
-        "args": ["--directory", "/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
+        "args": ["--directory", "/absolute/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
       }
     }
   },
 
   "pip-install": {
     "_location": "Alternative: install the server as a Python package, then reference the installed entry point directly",
-    "_setup": "cd /path/to/it-is-unreal/server && pip install -e .",
+    "_setup": "cd /absolute/path/to/it-is-unreal/server && pip install -e .",
     "mcpServers": {
       "unrealMCP": {
         "command": "it-is-unreal"
@@ -36,7 +36,7 @@
     "mcpServers": {
       "unrealMCP": {
         "command": "uv",
-        "args": ["--directory", "/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
+        "args": ["--directory", "/absolute/path/to/it-is-unreal/server", "run", "it_is_unreal.py"]
       }
     }
   },
@@ -46,7 +46,7 @@
     "mcpServers": {
       "unrealMCP": {
         "command": "uv",
-        "args": ["--directory", "/path/to/it-is-unreal/server", "run", "it_is_unreal.py"],
+        "args": ["--directory", "/absolute/path/to/it-is-unreal/server", "run", "it_is_unreal.py"],
         "env": {
           "UNREAL_HOST": "192.168.1.100",
           "UNREAL_PORT": "55557"
