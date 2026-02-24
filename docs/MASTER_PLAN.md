@@ -25,8 +25,27 @@
 | ~~TASK-001~~ | Extract and publish open-source project | P0 | DONE | - |
 | ~~TASK-002~~ | E2E testing and cross-platform audit | P1 | DONE | TASK-001 |
 | ~~TASK-003~~ | Rename project to "it-is-unreal" | P2 | DONE | - |
+| ~~TASK-004~~ | Prepare project for public GitHub sharing | P1 | DONE | TASK-003 |
 
 ## Completed
+
+### ~~TASK-004~~: Prepare project for public GitHub sharing
+- Added hero image to README
+- Rewrote Quick Start: prerequisites, clone step, 4 client configs (Claude Code, Claude Desktop, Cursor, pip), verification step
+- Removed misleading "run the server manually" step (MCP clients launch it via stdio)
+- Added troubleshooting section (plugin loading, connection refused, timeouts, log location)
+- Added updating instructions
+- Added badges (MIT, UE 5.4+, Python 3.10+, 123 tools)
+- Fixed tool counts in pyproject.toml (101/124 → 123)
+- Fixed GitHub URLs: flopperam → endlessblink in pyproject.toml and both .uplugin files
+- Filled CreatedByURL and SupportURL in both .uplugin files
+- Implemented UNREAL_HOST/UNREAL_PORT env var support in server
+- Fixed stale module docstring in it_is_unreal.py
+- Recategorized get_available_materials from Skeletal Mesh to Materials
+- Explained CLAUDE.md purpose for non-AI-tool users
+- Aligned placeholder paths in docs/mcp-client-config.json with README
+- Removed dead Blood & Dust profile link
+- Three rounds of critic review: 6/10 → 8.5/10 → 10/10
 
 ### ~~TASK-003~~: Rename project to "it-is-unreal"
 - Renamed `server/is_it_unreal.py` → `server/it_is_unreal.py`
